@@ -1,0 +1,42 @@
+type Team {
+    id: ID!,
+    name: String,
+    createDate: String,
+    lig: String,
+    players:[Player]
+}
+type Player {
+    id: ID!,
+    name: String,
+    createDate: String,
+    position: String,
+}
+input TeamDto {
+    name: String!,
+    lig: String!
+}
+input PlayerDto {
+    name: String,
+    surName:String,
+    position:Position,
+    teamId:Int!
+}
+
+ enum Position{
+     POINTGUARD,
+     SHOOTINGGUARD,
+     SMALLFORWARD,
+     POWERFORWARD,
+     CENTER
+ }
+
+type Query {
+    getAllTeam:[Team]
+    getTeamById(id:ID):Team
+}
+
+type Mutation {
+    createTeam(team : TeamDto):Team
+    createPlayer(player : PlayerDto):Player
+    deletePlayer(id:Int):ID
+}
